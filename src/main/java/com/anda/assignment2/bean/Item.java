@@ -36,6 +36,10 @@ public class Item {
         this.purchaseDate = purchaseDate;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -99,6 +103,14 @@ public class Item {
                 ", expirationDate=" + expirationDate +
                 ", consumptionDate=" + consumptionDate +
                 '}';
+    }
+
+    public boolean waste() {
+        Date current= new Date();
+        if(this.getConsumptionDate() == null && current.compareTo(this.getExpirationDate()) > 0) {
+            return true;
+        }
+        else return false;
     }
 }
 

@@ -8,11 +8,17 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { ItemService } from './service/item-service.service';
 
+import { ItemUpdateComponent } from './item-update/item-update.component';
+import { LoginComponent } from './login/login.component';
+import { UserService } from './service/user-service.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     ItemListComponent,
-    ItemFormComponent
+    ItemFormComponent,
+    ItemUpdateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

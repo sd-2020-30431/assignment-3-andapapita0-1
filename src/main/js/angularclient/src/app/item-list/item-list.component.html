@@ -10,6 +10,7 @@
 		  <th scope="col">Purchase date</th>
 		  <th scope="col">Expiration Date</th>
 		  <th scope="col">Consumption Date</th>
+		  <th scope="col">Actions</th> 
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,9 @@
 		  <td>{{ item.purchaseDate }}</td>
 		  <td>{{ item.expirationDate }}</td>
 		  <td>{{ item.consumptionDate }}</td>
+		  <td><button class="btn btn-danger" (click)="deleteItem(item)">Delete</button>
+                <button (click)="updateItem(item.id)" class="btn btn-info" style="margin-left: 10px">Update</button> 
+			 </td> 
         </tr>
       </tbody>
     </table>

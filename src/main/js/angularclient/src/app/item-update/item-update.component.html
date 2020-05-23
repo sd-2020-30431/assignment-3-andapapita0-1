@@ -1,0 +1,17 @@
+<h3>Add consumption date for this food item</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="consumptionDate">Consumption date</label>
+      <input type="text" 
+	    class="form-control" 
+		id="consumptionDate" 
+		required [(ngModel)]="item.consumptionDate" 
+		name="consumptionDate">
+    </div>
+	
+
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

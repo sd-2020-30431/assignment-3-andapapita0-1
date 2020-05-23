@@ -1,9 +1,9 @@
 export class Item {
-	id: string;
+	id: number;
 	name: string;
-	quantity: string;
-	calories: string;
+	quantity: number;
+	calories: number;
 	purchaseDate: string;
 	expirationDate: string;
-	consumptionDate:string;
+	consumptionDate: string;
 }
