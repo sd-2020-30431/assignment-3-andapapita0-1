@@ -1,30 +1,39 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
 import { UserService } from '../service/user-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   id: number;
   user: User;
   
-  constructor(private route: ActivatedRoute, 
-      private router: Router, 
-        private userService: UserService) {}
+  constructor(
+private route: ActivatedRoute, 
+       private router: Router, 
+        private userService: UserService) {
+	this.user = new User();
+	this.id = 3;
+}
 
   
-  authenticate() {
-	  this.user = new User();
-	this.id = 1;
-	if (this.user.username === "andap" && this.user.passwordd === "aa")
+  ngOnInit() {
+	this.userService.getUser(this.id)
+      .subscribe(data => {
+        console.log(data)
+        this.user = data;
+    }, error => console.log(error));
+  }
+  
+   authenticate(){
+	//if (this.user.username === "andap" && this.user.passwordd === "aa")
 		this.gotoList();
-	else this.stay();
+	//else this.stay();
   }
   
   onSubmit() {
@@ -38,5 +47,5 @@ export class LoginComponent {
   stay(){
 	  this.router.navigate(['/login']);
   }
-
+  
 }

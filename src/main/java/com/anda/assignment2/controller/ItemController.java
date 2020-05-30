@@ -61,4 +61,29 @@ public class ItemController {
         response.put("Deleted", Boolean.TRUE);
         return response;
     }
+
+    public String getNotificationText(){
+        String s = "";
+        List<Item> items = (List<Item>) itemRepository.findAll();
+        for(Item item : items){
+            if(item.oneDayBeforeExpiration())
+                s += item.getNotification();
+        }
+        return s;
+    }
+
+    @GetMapping("/notification")
+    public ResponseEntity<String> getNotification(){
+        String s = "";
+        s += '{';
+        s += '"';
+        s += this.getNotificationText();
+        s += '"';
+        s += ':';
+        s += '"';
+        s += "null";
+        s += '"';
+        s += '}';
+        return ResponseEntity.ok().body(s);
+    }
 }

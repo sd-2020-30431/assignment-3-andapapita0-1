@@ -7,9 +7,11 @@ import { Observable } from 'rxjs/Observable';
 export class ItemService {
  
   private itemsUrl: string;
+  private notUrl: string;
  
   constructor(private http: HttpClient) {
     this.itemsUrl = 'http://localhost:8080/groceries';
+    this.notUrl = 'http://localhost:8080/notification';
   }
  
   public findAll(): Observable<Item[]> {
@@ -30,5 +32,9 @@ export class ItemService {
   
   public getItem(id: number): Observable<any> {
 	  return this.http.get(`${this.itemsUrl}/${id}`);
+  }
+
+  public getNotification(): Observable<any> {
+    return this.http.get<any>(this.notUrl);
   }
 }

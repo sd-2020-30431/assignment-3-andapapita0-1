@@ -12,24 +12,57 @@ import java.util.List;
 public class WeeklyReport implements ReportFactory {
 
     @Override
-    public String generateReport(ItemRepository itemRepository) {
-        Date start_date, end_date;
-        start_date = getStartDay();
-        end_date = getEndDay();
+    public int getWastedItems(ItemRepository itemRepository) {
         int nr = 0;
-        String all="This week, from " + start_date.toString() + " to " + end_date.toString() +
-                ", the following products were wasted:<br>";
+        Date start_date, end_date;
         ItemController itemController = new ItemController(itemRepository);
         List<Item> list = itemController.getFood();
+        start_date = getStartDay();
+        end_date = getEndDay();
         for(Item item:list) {
-            if(item.getExpirationDate().compareTo(start_date) >= 0 && item.getExpirationDate().compareTo(end_date) <= 0) {
+            if(item.getExpirationDate().compareTo(start_date) >= 0 &&
+                    item.getExpirationDate().compareTo(end_date) <= 0) {
                 if(item.waste() == true) {
-                    all+="	-> " + item.getName() + "<br>";
                     nr++;
                 }
             }
         }
-        all += "<br><br> The total number of wasted products this week is: " + nr;
+        return nr;
+    }
+
+    @Override
+    public String generateReport(ItemRepository itemRepository) {
+        Date start_date, end_date;
+        start_date = getStartDay();
+        end_date = getEndDay();
+        String all  = "{";
+        all+= '"';
+        all+="This week, from " + start_date.toString() + " to " + end_date.toString() +
+                ", the following products were wasted: " ;
+        int nr = getWastedItems(itemRepository);
+        if(nr == 0){
+            all += "NONE! Congrats! ";
+        } else {
+            ItemController itemController = new ItemController(itemRepository);
+            List<Item> list = itemController.getFood();
+            for (Item item : list) {
+                if (item.getExpirationDate().compareTo(start_date) >= 0 && item.getExpirationDate().compareTo(end_date) <= 0) {
+                    if (item.waste() == true) {
+                        all += item.getName();
+                        all += ", ";
+                    }
+                }
+            }
+        }
+        all += ". ";
+        all += "The total number of wasted products this week is:" ;
+        all += '"';
+        all += ':';
+        all += '"';
+        all+= "null";
+        all += '"';
+        all += '}';
+
         return all;
     }
 

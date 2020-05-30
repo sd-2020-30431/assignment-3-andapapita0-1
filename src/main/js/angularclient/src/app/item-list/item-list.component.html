@@ -1,3 +1,4 @@
+<p [ngStyle]="{'color': 'red' }">{{notification}}</p>
 <div class="card my-5">
   <div class="card-body">
     <table class="table table-bordered table-striped">
@@ -6,11 +7,11 @@
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Quantity</th>
-		  <th scope="col">Calories per piece</th>
-		  <th scope="col">Purchase date</th>
-		  <th scope="col">Expiration Date</th>
-		  <th scope="col">Consumption Date</th>
-		  <th scope="col">Actions</th> 
+          <th scope="col">Calories per piece</th>
+          <th scope="col">Purchase date</th>
+          <th scope="col">Expiration Date</th>
+          <th scope="col">Consumption Date</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -18,15 +19,26 @@
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.quantity }}</td>
-		  <td>{{ item.calories }}</td>
-		  <td>{{ item.purchaseDate }}</td>
-		  <td>{{ item.expirationDate }}</td>
-		  <td>{{ item.consumptionDate }}</td>
-		  <td><button class="btn btn-danger" (click)="deleteItem(item)">Delete</button>
-                <button (click)="updateItem(item.id)" class="btn btn-info" style="margin-left: 10px">Update</button> 
-			 </td> 
+          <td>{{ item.calories }}</td>
+          <td>{{ item.purchaseDate }}</td>
+          <td>{{ item.expirationDate }}</td>
+          <td>{{ item.consumptionDate }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteItem(item)">Delete</button>
+            <button (click)="updateItem(item.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+<p>
+  If you want to donate your food before it goes to waste, we suggest the following organizations:
+  <a href="https://www.fightforlife.ro/rezultate/o-mas-cald-pentru-bunici-.html">Fight for life</a>,
+  <a href="http://www.omasacalda.ro"> O masa calda</a>.
+
+</p>
+
+
+
+

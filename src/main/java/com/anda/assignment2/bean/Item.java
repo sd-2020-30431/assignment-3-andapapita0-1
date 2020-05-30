@@ -112,5 +112,19 @@ public class Item {
         }
         else return false;
     }
+
+    public boolean oneDayBeforeExpiration() {
+        Date current = new Date();
+        if((this.getExpirationDate().getTime() - current.getTime()) / (1000*60*60*24) == 1)
+            return true;
+        else return false;
+    }
+
+    public String getNotification(){
+        String s = "";
+        s += this.getName().toUpperCase() + " expires tomorrow! You should consume or donate to charity. ";
+
+        return s;
+    }
 }
 

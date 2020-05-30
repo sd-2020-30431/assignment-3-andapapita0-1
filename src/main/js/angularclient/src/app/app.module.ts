@@ -7,10 +7,13 @@ import { AppComponent } from './app.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { ItemService } from './service/item-service.service';
-
 import { ItemUpdateComponent } from './item-update/item-update.component';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './service/user-service.service';
+import { WeeklyreportComponent } from './weeklyreport/weeklyreport.component';
+import { ReportService } from './service/report-service.service';
+import { MonthlyreportComponent } from './monthlyreport/monthlyreport.component';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { UserService } from './service/user-service.service';
     ItemListComponent,
     ItemFormComponent,
     ItemUpdateComponent,
-    LoginComponent
+    LoginComponent,
+    WeeklyreportComponent,
+    MonthlyreportComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,7 @@ import { UserService } from './service/user-service.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ItemService],
+  providers: [ItemService,UserService,ReportService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

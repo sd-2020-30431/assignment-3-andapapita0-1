@@ -14,5 +14,6 @@ export class UserService {
  
   public getUser(id: number): Observable<any> {
 	  return this.http.get(`${this.usersUrl}/${id}`);
-  }
+ }
+  
 }

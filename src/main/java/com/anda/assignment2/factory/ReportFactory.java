@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public interface ReportFactory {
+    public int getWastedItems(ItemRepository itemRepository);
     public String generateReport(ItemRepository itemRepository);
     public Calendar getCalendarForNow();
     public void setTimeToBeginningOfDay(Calendar calendar);
