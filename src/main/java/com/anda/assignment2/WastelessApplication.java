@@ -2,9 +2,7 @@ package com.anda.assignment2;
 
 import com.anda.assignment2.bean.Item;
 import com.anda.assignment2.bean.User;
-import com.anda.assignment2.controller.ItemController;
-import com.anda.assignment2.factory.MonthlyReport;
-import com.anda.assignment2.factory.WeeklyReport;
+import com.anda.assignment2.controller.ItemQueryController;
 import com.anda.assignment2.repositories.ItemRepository;
 import com.anda.assignment2.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -41,13 +39,9 @@ public class WastelessApplication {
 			itemRepository.save(i1);
 			itemRepository.save(i2);
 			itemRepository.save(i3);
-			ItemController itemController = new ItemController(itemRepository);
-			itemController.getFood().forEach(System.out::println);
-			//itemRepository.findAll().forEach(System.out::println);
 
-			MonthlyReport w = new MonthlyReport();
-			String s = w.generateReport(itemRepository);
-			System.out.println(s);
+			ItemQueryController itemController = new ItemQueryController(itemRepository);
+			itemController.getFood().forEach(System.out::println);
 		};
 	}
 

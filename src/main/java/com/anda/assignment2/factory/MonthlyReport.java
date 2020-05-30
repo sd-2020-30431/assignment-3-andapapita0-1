@@ -2,6 +2,7 @@ package com.anda.assignment2.factory;
 
 import com.anda.assignment2.bean.Item;
 import com.anda.assignment2.controller.ItemController;
+import com.anda.assignment2.controller.ItemQueryController;
 import com.anda.assignment2.repositories.ItemRepository;
 
 import java.util.Calendar;
@@ -14,7 +15,7 @@ public class MonthlyReport implements ReportFactory{
     public int getWastedItems(ItemRepository itemRepository) {
         int nr = 0;
         Date start_date, end_date;
-        ItemController itemController = new ItemController(itemRepository);
+        ItemQueryController itemController = new ItemQueryController(itemRepository);
         List<Item> list = itemController.getFood();
         start_date = getStartDay();
         end_date = getEndDay();
@@ -42,7 +43,7 @@ public class MonthlyReport implements ReportFactory{
         if(nr == 0){
             all += "NONE! Congrats! ";
         } else {
-            ItemController itemController = new ItemController(itemRepository);
+            ItemQueryController itemController = new ItemQueryController(itemRepository);
             List<Item> list = itemController.getFood();
             for (Item item : list) {
                 if (item.getExpirationDate().compareTo(start_date) >= 0 && item.getExpirationDate().compareTo(end_date) <= 0) {
