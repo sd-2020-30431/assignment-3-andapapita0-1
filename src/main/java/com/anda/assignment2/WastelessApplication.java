@@ -2,7 +2,12 @@ package com.anda.assignment2;
 
 import com.anda.assignment2.bean.Item;
 import com.anda.assignment2.bean.User;
+import com.anda.assignment2.controller.ItemCommandController;
 import com.anda.assignment2.controller.ItemQueryController;
+import com.anda.assignment2.mediator.Mediator;
+import com.anda.assignment2.mediator.handler.AddFoodCommandHandler;
+import com.anda.assignment2.mediator.request.AddFoodCommand;
+import com.anda.assignment2.mediator.response.AddFoodCommandResponse;
 import com.anda.assignment2.repositories.ItemRepository;
 import com.anda.assignment2.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -36,11 +41,26 @@ public class WastelessApplication {
 			Item i3 = new Item("cherries", 200, 600,
 					sdformat.parse("2020-05-15"), sdformat.parse("2020-05-10"));
 
-			itemRepository.save(i1);
+
+			ItemQueryController itemController = new ItemQueryController(itemRepository);
+			ItemCommandController itemCommandController = new ItemCommandController(itemRepository);
+
+			Mediator mediator = new Mediator();
+			AddFoodCommand request = new AddFoodCommand(i1);
+
+
+			AddFoodCommandHandler handler = (AddFoodCommandHandler)
+					mediator.<AddFoodCommand, AddFoodCommandResponse>getHandler(request);
+			AddFoodCommandResponse response = handler.handle(request);
+
+
+
+
+					//itemRepository.save(i1);
 			itemRepository.save(i2);
 			itemRepository.save(i3);
 
-			ItemQueryController itemController = new ItemQueryController(itemRepository);
+
 			itemController.getFood().forEach(System.out::println);
 		};
 	}

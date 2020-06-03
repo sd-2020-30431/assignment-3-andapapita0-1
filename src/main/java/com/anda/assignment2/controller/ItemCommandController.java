@@ -18,8 +18,8 @@ public class ItemCommandController extends ItemController{
     }
 
     @PostMapping("/groceries")
-    void addFood(@RequestBody Item item) {
-        itemRepository.save(item);
+    public Item addFood(@RequestBody Item item) {
+        return itemRepository.save(item);
     }
 
     @PostMapping("/groceries/{id}")
